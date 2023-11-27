@@ -1,6 +1,6 @@
-# Terraform Basic VPC Deployment
+# Terraform Conduktor Deployment
 
-This Terraform configuration will deploy a basic VPC into an account of your choice.
+This Terraform configuration will deploy a basic setup of Conduktor into an account of your choice.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
