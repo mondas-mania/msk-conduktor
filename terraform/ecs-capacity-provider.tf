@@ -9,6 +9,13 @@ resource "aws_launch_template" "conduktor_cluster_launch_template" {
   vpc_security_group_ids = []
   update_default_version = true
 
+  user_data = base64encode(templatefile(
+    "${path.module}/scripts/node_group.sh",
+    {
+      cluster_name = aws_ecs_cluster.conduktor_cluster.name
+    }
+  ))
+
   iam_instance_profile {
     arn = aws_iam_instance_profile.node_instance_profile.arn
   }
