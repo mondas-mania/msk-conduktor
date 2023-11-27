@@ -1,0 +1,35 @@
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.82.0
+    hooks:
+      # Creates Documentation based on Terraform Outputs and Variables
+      # Requires Terraform-Docs (github.com/terraform-docs/terraform-docs)
+      - id: terraform_docs
+        args: [--args=--lockfile=false]
+      # Check that code is formatted to `terraform fmt` canonical style
+      - id: terraform_fmt
+      # Lint code using `tflint` to ensure it matches the correct style
+      - id: terraform_tflint
+        args: [--args=--config=.tflint.hcl]
+      # Runs `tfsec` to check for known security misconfigurations
+      - id: terraform_tfsec
+      # Runs `terraform validate` to check for valid Terraform code
+      - id: terraform_validate
+        exclude: 'terraform/modules/'
+      - id: terraform_providers_lock
+        args:
+        - --hook-config=--mode=only-check-is-current-lockfile-cross-platform
+        - --args=-platform=linux_amd64
+        - --args=-platform=darwin_amd64
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: mixed-line-ending
+      - id: trailing-whitespace
