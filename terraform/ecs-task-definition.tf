@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
   container_definitions = jsonencode([
     {
       "name" : "conduktor",
-      "image" : "conduktor/conduktor-platform:1.17.3",
+      "image" : "conduktor/conduktor-platform:${var.conduktor_image_tag}",
       "cpu" : 0,
       "portMappings" : [
         {
