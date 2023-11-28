@@ -49,3 +49,13 @@ variable "rds_password" {
   description = "Password for the RDS instance that stores the state of Conduktor"
   type        = string
 }
+
+variable "conduktor_username" {
+  description = "Username for the Conduktor console."
+  type        = string
+}
+
+variable "conduktor_password" {
+  description = "Password for the Conduktor console."
+  type        = string
+}

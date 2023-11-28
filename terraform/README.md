@@ -72,6 +72,8 @@ No modules.
 | <a name="input_alb_ingress_cidrs"></a> [alb\_ingress\_cidrs](#input\_alb\_ingress\_cidrs) | A map of 'description = CIDR ranges' to allow ingress from to the ALB. | `map(list(string))` | <pre>{<br>  "Internet": [<br>    "0.0.0.0/0"<br>  ]<br>}</pre> | no |
 | <a name="input_cli_profile_name"></a> [cli\_profile\_name](#input\_cli\_profile\_name) | The name of the AWS CLI profile to deploy this Terraform with.<br>  Set to null to use environment variables instead. | `string` | `null` | no |
 | <a name="input_conduktor_image_tag"></a> [conduktor\_image\_tag](#input\_conduktor\_image\_tag) | The image tag of the conduktor/conduktor-platform image to use. | `string` | `"1.17.3"` | no |
+| <a name="input_conduktor_password"></a> [conduktor\_password](#input\_conduktor\_password) | Password for the Conduktor console. | `string` | n/a | yes |
+| <a name="input_conduktor_username"></a> [conduktor\_username](#input\_conduktor\_username) | Username for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Your name, used for tagging purposes. | `string` | `"Edna Mode"` | no |
 | <a name="input_rds_password"></a> [rds\_password](#input\_rds\_password) | Password for the RDS instance that stores the state of Conduktor | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region in which to deploy these resources. | `string` | `"eu-west-1"` | no |

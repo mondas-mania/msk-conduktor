@@ -37,6 +37,10 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
       "volumesFrom" : [],
       "environment" : [
         {
+          "name" : "CDK_ORGANIZATION_NAME"
+          "value" : "Test Organization"
+        },
+        {
           "name" : "CDK_LISTENING_PORT"
           "value" : "8080"
         },
