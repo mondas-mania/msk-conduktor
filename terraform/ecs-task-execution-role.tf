@@ -4,7 +4,8 @@ data "aws_iam_policy_document" "task_execution_policy" {
     effect = "Allow"
     resources = [
       aws_ssm_parameter.conduktor_password.arn,
-      aws_ssm_parameter.conduktor_email.arn
+      aws_ssm_parameter.conduktor_email.arn,
+      aws_ssm_parameter.postgres_password.arn
     ]
     actions = ["ssm:GetParameters"]
   }

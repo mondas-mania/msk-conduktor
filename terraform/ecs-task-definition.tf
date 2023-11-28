@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
   container_definitions = jsonencode([
     {
       "name" : "conduktor",
-      "image" : "conduktor/conduktor-platform",
+      "image" : "conduktor/conduktor-platform:1.17.3",
       "cpu" : 0,
       "portMappings" : [
         {
@@ -43,16 +43,36 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         {
           "name" : "CDK_ROOT_LOG_LEVEL"
           "value" : "DEBUG"
+        },
+        {
+          "name" : "CDK_DATABASE_HOST"
+          "value" : "${aws_db_instance.conduktor_state_db.address}"
+        },
+        {
+          "name" : "CDK_DATABASE_PORT"
+          "value" : "${tostring(aws_db_instance.conduktor_state_db.port)}"
+        },
+        {
+          "name" : "CDK_DATABASE_NAME"
+          "value" : "${aws_db_instance.conduktor_state_db.db_name}"
+        },
+        {
+          "name" : "CDK_DATABASE_USERNAME"
+          "value" : "${aws_db_instance.conduktor_state_db.username}"
         }
       ],
       "secrets" : [
         {
           "name" : "CDK_ADMIN_EMAIL",
-          "valueFrom" : "arn:aws:ssm:eu-central-1:187839044123:parameter/conduktor/email"
+          "valueFrom" : "${aws_ssm_parameter.conduktor_email.arn}"
         },
         {
           "name" : "CDK_ADMIN_PASSWORD",
-          "valueFrom" : "arn:aws:ssm:eu-central-1:187839044123:parameter/conduktor/password"
+          "valueFrom" : "${aws_ssm_parameter.conduktor_password.arn}"
+        },
+        {
+          "name" : "CDK_DATABASE_PASSWORD",
+          "valueFrom" : "${aws_ssm_parameter.postgres_password.arn}"
         }
       ],
       "ulimits" : [],

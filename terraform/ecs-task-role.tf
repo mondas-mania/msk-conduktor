@@ -49,9 +49,9 @@ resource "aws_iam_role" "conduktor_task_role" {
   name               = "task-role"
   path               = "/conduktor/"
   assume_role_policy = data.aws_iam_policy_document.ecs_trust_policy.json
-  managed_policy_arns = [
+  managed_policy_arns = concat(var.additional_task_role_policies, [
     "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-  ]
+  ])
 
   inline_policy {
     name   = "conduktor-task-policy"

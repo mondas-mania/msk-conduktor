@@ -37,3 +37,13 @@ resource "aws_security_group_rule" "ecs_allow_from_alb" {
   source_security_group_id = aws_security_group.alb_security_group.id
   security_group_id        = aws_security_group.ecs_security_group.id
 }
+
+resource "aws_security_group_rule" "ecs_allow_all_outbound" {
+  description       = "Allow traffic out from service."
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ecs_security_group.id
+}

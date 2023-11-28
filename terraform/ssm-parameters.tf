@@ -17,3 +17,9 @@ resource "aws_ssm_parameter" "conduktor_password" {
     ignore_changes = [value]
   }
 }
+
+resource "aws_ssm_parameter" "postgres_password" {
+  name  = "/conduktor/postgres_password"
+  type  = "SecureString"
+  value = aws_db_instance.conduktor_state_db.password
+}

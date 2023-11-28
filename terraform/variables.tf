@@ -25,7 +25,27 @@ variable "vpc_name" {
 }
 
 variable "alb_ingress_cidrs" {
-  description = "A list of CIDR ranges to allow ingress from to the ALB."
+  description = "A map of 'description = CIDR ranges' to allow ingress from to the ALB."
+  type        = map(list(string))
+  default     = { "Internet" = ["0.0.0.0/0"] }
+}
+
+variable "additional_task_role_policies" {
+  description = <<EOT
+  A list of ARNs to attach to the Task Role for use by the ECS Service.
+  This should include kafka-cluster (Kafka API) permissions to interact with an MSK cluster.
+  EOT
   type        = list(string)
-  default     = ["0.0.0.0/0"]
+  default     = []
+}
+
+variable "conduktor_image_tag" {
+  description = "The image tag of the conduktor/conduktor-platform image to use."
+  type        = string
+  default     = "1.17.3"
+}
+
+variable "rds_password" {
+  description = "Password for the RDS instance that stores the state of Conduktor"
+  type        = string
 }

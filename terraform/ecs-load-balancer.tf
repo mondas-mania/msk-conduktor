@@ -38,12 +38,13 @@ resource "aws_security_group" "alb_security_group" {
 }
 
 resource "aws_security_group_rule" "alb_allow_office" {
-  description       = "Allow traffic from office."
+  for_each          = var.alb_ingress_cidrs
+  description       = "Allow traffic into the ALB. ${each.key}"
   type              = "ingress"
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
-  cidr_blocks       = var.alb_ingress_cidrs
+  cidr_blocks       = each.value
   security_group_id = aws_security_group.alb_security_group.id
 }
 
