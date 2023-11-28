@@ -1,9 +1,10 @@
 resource "aws_ecs_service" "conduktor_service" {
-  name            = "conduktor"
-  cluster         = aws_ecs_cluster.conduktor_cluster.id
-  task_definition = aws_ecs_task_definition.conduktor_task_definition.arn
-  desired_count   = 1
-  launch_type     = "EC2"
+  name                   = "conduktor"
+  cluster                = aws_ecs_cluster.conduktor_cluster.id
+  task_definition        = aws_ecs_task_definition.conduktor_task_definition.arn
+  desired_count          = 1
+  launch_type            = "EC2"
+  enable_execute_command = true
   network_configuration {
     subnets         = data.aws_subnets.msk_private_subnet.ids
     security_groups = [aws_security_group.ecs_security_group.id]
@@ -14,6 +15,11 @@ resource "aws_ecs_service" "conduktor_service" {
     container_name   = "conduktor"
     container_port   = 8080
   }
+
+  # Can't create service until the TG is linked to an ALB
+  depends_on = [
+    aws_lb_listener.conduktor_default_listener
+  ]
 }
 
 resource "aws_security_group" "ecs_security_group" {

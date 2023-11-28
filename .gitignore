@@ -258,6 +258,8 @@ fabric.properties
 # Custom .gitignore entries BEGIN
 # ------------
 
+exec-checker.sh
+
 # ------------
 # Custom .gitignore entries END
 # ------------

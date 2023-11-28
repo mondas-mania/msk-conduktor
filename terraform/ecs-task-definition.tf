@@ -29,10 +29,22 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         }
       ],
       "essential" : true,
-      "environment" : [],
       "environmentFiles" : [],
+      "linuxParameters" : {
+        "initProcessEnabled" : true
+      }
       "mountPoints" : [],
       "volumesFrom" : [],
+      "environment" : [
+        {
+          "name" : "CDK_LISTENING_PORT"
+          "value" : "8080"
+        },
+        {
+          "name" : "CDK_ROOT_LOG_LEVEL"
+          "value" : "DEBUG"
+        }
+      ],
       "secrets" : [
         {
           "name" : "CDK_ADMIN_EMAIL",

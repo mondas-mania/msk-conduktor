@@ -17,8 +17,44 @@ data "aws_iam_policy_document" "ecs_trust_policy" {
   }
 }
 
+data "aws_iam_policy_document" "task_policy" {
+  statement {
+    sid       = "AllowECSExec"
+    effect    = "Allow"
+    resources = ["*"]
+
+    actions = [
+      "ssmmessages:CreateControlChannel",
+      "ssmmessages:CreateDataChannel",
+      "ssmmessages:OpenControlChannel",
+      "ssmmessages:OpenDataChannel",
+    ]
+  }
+
+  statement {
+    sid       = "UseLogGroups"
+    effect    = "Allow"
+    resources = ["*"]
+
+    actions = [
+      "logs:DescribeLogGroups",
+      "logs:CreateLogStream",
+      "logs:DescribeLogStreams",
+      "logs:PutLogEvents",
+    ]
+  }
+}
+
 resource "aws_iam_role" "conduktor_task_role" {
   name               = "task-role"
   path               = "/conduktor/"
   assume_role_policy = data.aws_iam_policy_document.ecs_trust_policy.json
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+  ]
+
+  inline_policy {
+    name   = "conduktor-task-policy"
+    policy = data.aws_iam_policy_document.task_policy.json
+  }
 }
