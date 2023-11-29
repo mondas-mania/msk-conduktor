@@ -6,7 +6,7 @@ resource "aws_ecs_service" "conduktor_service" {
   launch_type            = "EC2"
   enable_execute_command = true
   network_configuration {
-    subnets         = data.aws_subnets.msk_private_subnet.ids
+    subnets         = data.aws_subnets.msk_private_subnets.ids
     security_groups = [aws_security_group.ecs_security_group.id]
   }
 

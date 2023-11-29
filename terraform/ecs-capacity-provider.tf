@@ -34,7 +34,7 @@ resource "aws_autoscaling_group" "conduktor_cluster_node_group" {
     version = "$Latest"
   }
 
-  vpc_zone_identifier = data.aws_subnets.msk_private_subnet.ids
+  vpc_zone_identifier = data.aws_subnets.msk_private_subnets.ids
 
   # Will be added by ECS so needs to be specified here or else TF will remove it
   tag {

@@ -7,7 +7,7 @@ data "aws_vpc" "msk_vpc" {
   }
 }
 
-data "aws_subnets" "msk_private_subnet" {
+data "aws_subnets" "msk_private_subnets" {
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.msk_vpc.id]
