@@ -42,13 +42,13 @@ variable "additional_task_role_policies" {
 variable "conduktor_console_image_tag" {
   description = "The image tag of the conduktor/conduktor-platform image to use for the console."
   type        = string
-  default     = "1.18.4"
+  default     = "1.19.2"
 }
 
 variable "conduktor_monitoring_image_tag" {
   description = "The image tag of the conduktor/conduktor-platform-cortex image to use for monitoring."
   type        = string
-  default     = "1.18.4"
+  default     = "1.19.2"
 }
 
 variable "rds_password" {

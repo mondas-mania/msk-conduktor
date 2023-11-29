@@ -2,6 +2,38 @@
 
 This Terraform configuration will deploy a basic setup of Conduktor into an account of your choice.
 
+A sample tfvars file can be found below:
+
+```hcl
+cli_profile_name = "test_env"
+region           = "eu-central-1"
+
+owner = "edna.mode@nocapes.com"
+
+vpc_name = "default"
+
+alb_ingress_cidrs = {
+  "Home address"  = ["4.3.2.1/32"]
+  "Office IPs" = [
+    "1.2.3.4/32",
+    "5.6.7.8/32
+  ]
+}
+
+conduktor_console_image_tag    = "1.19.2"
+conduktor_monitoring_image_tag = "1.19.2"
+
+conduktor_username = "edna.mode@nocapes.com"
+conduktor_password = "ineverlookbackdarling"
+
+rds_password = "thisisnotsecretatall"
+
+additional_task_role_policies = [
+  "arn:aws:iam::aws:policy/AmazonMSKFullAccess",
+  "arn:aws:iam::123456789012:policy/kafka-access"
+]
+```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -69,8 +101,8 @@ No modules.
 | <a name="input_additional_task_role_policies"></a> [additional\_task\_role\_policies](#input\_additional\_task\_role\_policies) | A list of ARNs to attach to the Task Role for use by the ECS Service.<br>  This should include kafka-cluster (Kafka API) permissions to interact with an MSK cluster. | `list(string)` | `[]` | no |
 | <a name="input_alb_ingress_cidrs"></a> [alb\_ingress\_cidrs](#input\_alb\_ingress\_cidrs) | A map of 'description = CIDR ranges' to allow ingress from to the ALB. | `map(list(string))` | <pre>{<br>  "Internet": [<br>    "0.0.0.0/0"<br>  ]<br>}</pre> | no |
 | <a name="input_cli_profile_name"></a> [cli\_profile\_name](#input\_cli\_profile\_name) | The name of the AWS CLI profile to deploy this Terraform with.<br>  Set to null to use environment variables instead. | `string` | `null` | no |
-| <a name="input_conduktor_console_image_tag"></a> [conduktor\_console\_image\_tag](#input\_conduktor\_console\_image\_tag) | The image tag of the conduktor/conduktor-platform image to use for the console. | `string` | `"1.18.4"` | no |
-| <a name="input_conduktor_monitoring_image_tag"></a> [conduktor\_monitoring\_image\_tag](#input\_conduktor\_monitoring\_image\_tag) | The image tag of the conduktor/conduktor-platform-cortex image to use for monitoring. | `string` | `"1.18.4"` | no |
+| <a name="input_conduktor_console_image_tag"></a> [conduktor\_console\_image\_tag](#input\_conduktor\_console\_image\_tag) | The image tag of the conduktor/conduktor-platform image to use for the console. | `string` | `"1.19.2"` | no |
+| <a name="input_conduktor_monitoring_image_tag"></a> [conduktor\_monitoring\_image\_tag](#input\_conduktor\_monitoring\_image\_tag) | The image tag of the conduktor/conduktor-platform-cortex image to use for monitoring. | `string` | `"1.19.2"` | no |
 | <a name="input_conduktor_password"></a> [conduktor\_password](#input\_conduktor\_password) | Password for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_conduktor_username"></a> [conduktor\_username](#input\_conduktor\_username) | Username for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Your name, used for tagging purposes. | `string` | `"Edna Mode"` | no |
