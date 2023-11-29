@@ -56,6 +56,12 @@ variable "rds_password" {
   type        = string
 }
 
+variable "conduktor_organization_name" {
+  description = "The name of the Organization that Conduktor will use."
+  type        = string
+  default     = "Test Organization"
+}
+
 variable "conduktor_username" {
   description = "Username for the Conduktor console."
   type        = string

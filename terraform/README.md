@@ -23,8 +23,9 @@ alb_ingress_cidrs = {
 conduktor_console_image_tag    = "1.19.2"
 conduktor_monitoring_image_tag = "1.19.2"
 
-conduktor_username = "edna.mode@nocapes.com"
-conduktor_password = "ineverlookbackdarling"
+conduktor_organization_name = "Test Organization"
+conduktor_username          = "edna.mode@nocapes.com"
+conduktor_password          = "ineverlookbackdarling"
 
 rds_password = "thisisnotsecretatall"
 
@@ -103,6 +104,7 @@ No modules.
 | <a name="input_cli_profile_name"></a> [cli\_profile\_name](#input\_cli\_profile\_name) | The name of the AWS CLI profile to deploy this Terraform with.<br>  Set to null to use environment variables instead. | `string` | `null` | no |
 | <a name="input_conduktor_console_image_tag"></a> [conduktor\_console\_image\_tag](#input\_conduktor\_console\_image\_tag) | The image tag of the conduktor/conduktor-platform image to use for the console. | `string` | `"1.19.2"` | no |
 | <a name="input_conduktor_monitoring_image_tag"></a> [conduktor\_monitoring\_image\_tag](#input\_conduktor\_monitoring\_image\_tag) | The image tag of the conduktor/conduktor-platform-cortex image to use for monitoring. | `string` | `"1.19.2"` | no |
+| <a name="input_conduktor_organization_name"></a> [conduktor\_organization\_name](#input\_conduktor\_organization\_name) | The name of the Organization that Conduktor will use. | `string` | `"Test Organization"` | no |
 | <a name="input_conduktor_password"></a> [conduktor\_password](#input\_conduktor\_password) | Password for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_conduktor_username"></a> [conduktor\_username](#input\_conduktor\_username) | Username for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Your name, used for tagging purposes. | `string` | `"Edna Mode"` | no |

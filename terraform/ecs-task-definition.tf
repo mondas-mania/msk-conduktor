@@ -38,7 +38,7 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
       environment : [
         {
           name : "CDK_ORGANIZATION_NAME"
-          value : "Test Organization"
+          value : var.conduktor_organization_name
         },
         {
           name : "CDK_LISTENING_PORT"
