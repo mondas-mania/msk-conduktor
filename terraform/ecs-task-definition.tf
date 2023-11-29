@@ -16,9 +16,9 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
 
   container_definitions = jsonencode([
     {
-      name : "conduktor-platform",
-      image : "conduktor/conduktor-platform:${var.conduktor_console_image_tag}",
-      cpu : 0,
+      name : "conduktor-platform"
+      image : "conduktor/conduktor-platform:${var.conduktor_console_image_tag}"
+      cpu : 0
       portMappings : [
         {
           name : "conduktor-8080-tcp",
@@ -27,14 +27,14 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
           protocol : "tcp",
           appProtocol : "http"
         }
-      ],
-      essential : true,
-      environmentFiles : [],
+      ]
+      essential : true
+      environmentFiles : []
       linuxParameters : {
         initProcessEnabled : true
       }
-      mountPoints : [],
-      volumesFrom : [],
+      mountPoints : []
+      volumesFrom : []
       environment : [
         {
           name : "CDK_ORGANIZATION_NAME"
@@ -65,101 +65,101 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
           value : aws_db_instance.conduktor_state_db.username
         },
         {
-          name : "CDK_MONITORING_CALLBACK-URL",
+          name : "CDK_MONITORING_CALLBACK-URL"
           value : "http://localhost:8080/monitoring/api/"
         },
         {
-          name : "CDK_MONITORING_CORTEX-URL",
+          name : "CDK_MONITORING_CORTEX-URL"
           value : "http://localhost:9009/"
         },
         {
-          name : "CDK_MONITORING_ALERT-MANAGER-URL",
+          name : "CDK_MONITORING_ALERT-MANAGER-URL"
           value : "http://localhost:9010/"
         },
         {
-          name : "CDK_MONITORING_NOTIFICATIONS-CALLBACK-URL",
+          name : "CDK_MONITORING_NOTIFICATIONS-CALLBACK-URL"
           value : "http://localhost:8080"
         }
-      ],
+      ]
       secrets : [
         {
-          name : "CDK_ADMIN_EMAIL",
+          name : "CDK_ADMIN_EMAIL"
           valueFrom : aws_ssm_parameter.conduktor_email.arn
         },
         {
-          name : "CDK_ADMIN_PASSWORD",
+          name : "CDK_ADMIN_PASSWORD"
           valueFrom : aws_ssm_parameter.conduktor_password.arn
         },
         {
-          name : "CDK_DATABASE_PASSWORD",
+          name : "CDK_DATABASE_PASSWORD"
           valueFrom : aws_ssm_parameter.postgres_password.arn
         }
-      ],
-      ulimits : [],
+      ]
+      ulimits : []
       logConfiguration : {
-        logDriver : "awslogs",
+        logDriver : "awslogs"
         options : {
-          awslogs-group : "conduktor-log-group",
-          awslogs-region : "eu-central-1",
+          awslogs-group : "conduktor-log-group"
+          awslogs-region : "eu-central-1"
           awslogs-stream-prefix : "ecs"
-        },
+        }
         secretOptions : []
       }
     },
 
     {
-      name : "conduktor-monitoring",
-      image : "conduktor/conduktor-platform-cortex:${var.conduktor_monitoring_image_tag}",
-      cpu : 0,
+      name : "conduktor-monitoring"
+      image : "conduktor/conduktor-platform-cortex:${var.conduktor_monitoring_image_tag}"
+      cpu : 0
       portMappings : [
         {
-          name : "conduktor-monitoring-9009-tcp",
-          containerPort : 9009,
-          hostPort : 9009,
+          name : "conduktor-monitoring-9009-tcp"
+          containerPort : 9009
+          hostPort : 9009
           protocol : "tcp"
         },
         {
-          name : "conduktor-monitoring-9010-tcp",
-          containerPort : 9010,
-          hostPort : 9010,
+          name : "conduktor-monitoring-9010-tcp"
+          containerPort : 9010
+          hostPort : 9010
           protocol : "tcp"
         },
         {
-          name : "conduktor-monitoring-9090-tcp",
-          containerPort : 9090,
-          hostPort : 9090,
+          name : "conduktor-monitoring-9090-tcp"
+          containerPort : 9090
+          hostPort : 9090
           protocol : "tcp"
         }
-      ],
-      essential : false,
+      ]
+      essential : false
       environment : [
         {
-          name : "CDK_CONSOLE-URL",
+          name : "CDK_CONSOLE-URL"
           value : "http://localhost:8080"
         },
         {
-          name : "CORTEX_ROOT_LOG_LEVEL",
+          name : "CORTEX_ROOT_LOG_LEVEL"
           value : "INFO"
         },
         {
-          name : "CORTEX_ALERT_ROOT_LOG_LEVEL",
+          name : "CORTEX_ALERT_ROOT_LOG_LEVEL"
           value : "INFO"
         },
         {
-          name : "PROMETHEUS_ROOT_LOG_LEVEL",
+          name : "PROMETHEUS_ROOT_LOG_LEVEL"
           value : "INFO"
         }
-      ],
-      environmentFiles : [],
-      mountPoints : [],
-      volumesFrom : [],
+      ]
+      environmentFiles : []
+      mountPoints : []
+      volumesFrom : []
       logConfiguration : {
-        logDriver : "awslogs",
+        logDriver : "awslogs"
         options : {
           awslogs-group : "conduktor-log-group",
           awslogs-region : "eu-central-1",
           awslogs-stream-prefix : "ecs"
-        },
+        }
         secretOptions : []
       }
     }
