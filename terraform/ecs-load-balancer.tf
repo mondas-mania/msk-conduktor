@@ -17,7 +17,6 @@ resource "aws_lb_target_group" "conduktor_target_group" {
     # Found in the CloudFormation template
     # https://github.com/conduktor/quickstart-conduktor-aws-msk/blob/main/cf-deploy/3%20-%20create%20ECS%20Service.yaml
     # path = "/platform/api/modules/health/live"
-    # path = "/health/ping"
     path = "/"
   }
 }

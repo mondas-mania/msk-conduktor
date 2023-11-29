@@ -12,7 +12,7 @@ resource "aws_ecs_service" "conduktor_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.conduktor_target_group.arn
-    container_name   = "conduktor"
+    container_name   = "conduktor-platform"
     container_port   = 8080
   }
 

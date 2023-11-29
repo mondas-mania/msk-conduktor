@@ -71,7 +71,8 @@ No modules.
 | <a name="input_additional_task_role_policies"></a> [additional\_task\_role\_policies](#input\_additional\_task\_role\_policies) | A list of ARNs to attach to the Task Role for use by the ECS Service.<br>  This should include kafka-cluster (Kafka API) permissions to interact with an MSK cluster. | `list(string)` | `[]` | no |
 | <a name="input_alb_ingress_cidrs"></a> [alb\_ingress\_cidrs](#input\_alb\_ingress\_cidrs) | A map of 'description = CIDR ranges' to allow ingress from to the ALB. | `map(list(string))` | <pre>{<br>  "Internet": [<br>    "0.0.0.0/0"<br>  ]<br>}</pre> | no |
 | <a name="input_cli_profile_name"></a> [cli\_profile\_name](#input\_cli\_profile\_name) | The name of the AWS CLI profile to deploy this Terraform with.<br>  Set to null to use environment variables instead. | `string` | `null` | no |
-| <a name="input_conduktor_image_tag"></a> [conduktor\_image\_tag](#input\_conduktor\_image\_tag) | The image tag of the conduktor/conduktor-platform image to use. | `string` | `"1.17.3"` | no |
+| <a name="input_conduktor_console_image_tag"></a> [conduktor\_console\_image\_tag](#input\_conduktor\_console\_image\_tag) | The image tag of the conduktor/conduktor-platform image to use for the console. | `string` | `"1.18.4"` | no |
+| <a name="input_conduktor_monitoring_image_tag"></a> [conduktor\_monitoring\_image\_tag](#input\_conduktor\_monitoring\_image\_tag) | The image tag of the conduktor/conduktor-platform-cortex image to use for monitoring. | `string` | `"1.18.4"` | no |
 | <a name="input_conduktor_password"></a> [conduktor\_password](#input\_conduktor\_password) | Password for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_conduktor_username"></a> [conduktor\_username](#input\_conduktor\_username) | Username for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Your name, used for tagging purposes. | `string` | `"Edna Mode"` | no |

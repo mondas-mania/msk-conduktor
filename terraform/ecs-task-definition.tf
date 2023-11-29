@@ -16,8 +16,8 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
 
   container_definitions = jsonencode([
     {
-      "name" : "conduktor",
-      "image" : "conduktor/conduktor-platform:${var.conduktor_image_tag}",
+      "name" : "conduktor-platform",
+      "image" : "conduktor/conduktor-platform:${var.conduktor_console_image_tag}",
       "cpu" : 0,
       "portMappings" : [
         {
@@ -63,6 +63,22 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         {
           "name" : "CDK_DATABASE_USERNAME"
           "value" : "${aws_db_instance.conduktor_state_db.username}"
+        },
+        {
+          "name" : "CDK_MONITORING_CALLBACK-URL",
+          "value" : "http://localhost:8080/monitoring/api/"
+        },
+        {
+          "name" : "CDK_MONITORING_CORTEX-URL",
+          "value" : "http://localhost:9009/"
+        },
+        {
+          "name" : "CDK_MONITORING_ALERT-MANAGER-URL",
+          "value" : "http://localhost:9010/"
+        },
+        {
+          "name" : "CDK_MONITORING_NOTIFICATIONS-CALLBACK-URL",
+          "value" : "http://localhost:8080"
         }
       ],
       "secrets" : [
@@ -80,6 +96,63 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         }
       ],
       "ulimits" : [],
+      "logConfiguration" : {
+        "logDriver" : "awslogs",
+        "options" : {
+          "awslogs-group" : "conduktor-log-group",
+          "awslogs-region" : "eu-central-1",
+          "awslogs-stream-prefix" : "ecs"
+        },
+        "secretOptions" : []
+      }
+    },
+
+    {
+      "name" : "conduktor-monitoring",
+      "image" : "conduktor/conduktor-platform-cortex:${var.conduktor_monitoring_image_tag}",
+      "cpu" : 0,
+      "portMappings" : [
+        {
+          "name" : "conduktor-monitoring-9009-tcp",
+          "containerPort" : 9009,
+          "hostPort" : 9009,
+          "protocol" : "tcp"
+        },
+        {
+          "name" : "conduktor-monitoring-9010-tcp",
+          "containerPort" : 9010,
+          "hostPort" : 9010,
+          "protocol" : "tcp"
+        },
+        {
+          "name" : "conduktor-monitoring-9090-tcp",
+          "containerPort" : 9090,
+          "hostPort" : 9090,
+          "protocol" : "tcp"
+        }
+      ],
+      "essential" : false,
+      "environment" : [
+        {
+          "name" : "CDK_CONSOLE-URL",
+          "value" : "http://localhost:8080"
+        },
+        {
+          "name" : "CORTEX_ROOT_LOG_LEVEL",
+          "value" : "DEBUG"
+        },
+        {
+          "name" : "CORTEX_ALERT_ROOT_LOG_LEVEL",
+          "value" : "DEBUG"
+        },
+        {
+          "name" : "PROMETHEUS_ROOT_LOG_LEVEL",
+          "value" : "DEBUG"
+        }
+      ],
+      "environmentFiles" : [],
+      "mountPoints" : [],
+      "volumesFrom" : [],
       "logConfiguration" : {
         "logDriver" : "awslogs",
         "options" : {
