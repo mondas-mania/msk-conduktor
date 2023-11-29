@@ -21,11 +21,11 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
       cpu : 0,
       portMappings : [
         {
-          "name" : "conduktor-8080-tcp",
-          "containerPort" : 8080,
-          "hostPort" : 8080,
-          "protocol" : "tcp",
-          "appProtocol" : "http"
+          name : "conduktor-8080-tcp",
+          containerPort : 8080,
+          hostPort : 8080,
+          protocol : "tcp",
+          appProtocol : "http"
         }
       ],
       essential : true,
