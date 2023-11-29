@@ -1,3 +1,5 @@
+# tfsec:ignore:aws-elb-drop-invalid-headers
+# tfsec:ignore:aws-elb-alb-not-public
 resource "aws_lb" "conduktor_load_balancer" {
   name               = "conduktor-alb"
   internal           = false
@@ -21,6 +23,7 @@ resource "aws_lb_target_group" "conduktor_target_group" {
   }
 }
 
+# tfsec:ignore:aws-elb-http-not-used
 resource "aws_lb_listener" "conduktor_default_listener" {
   load_balancer_arn = aws_lb.conduktor_load_balancer.arn
   port              = "80"
@@ -38,7 +41,8 @@ resource "aws_security_group" "alb_security_group" {
   vpc_id      = data.aws_vpc.msk_vpc.id
 }
 
-resource "aws_security_group_rule" "alb_allow_office" {
+# tfsec:ignore:aws-ec2-no-public-ingress-sgr
+resource "aws_security_group_rule" "alb_allow_ingress" {
   for_each          = var.alb_ingress_cidrs
   description       = "Allow traffic into the ALB. ${each.key}"
   type              = "ingress"

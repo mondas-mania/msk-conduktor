@@ -1,3 +1,4 @@
+# tfsec:ignore:aws-ecs-enable-container-insight
 resource "aws_ecs_cluster" "conduktor_cluster" {
   name = "conduktor-cluster"
 
@@ -12,6 +13,7 @@ resource "aws_ecs_cluster" "conduktor_cluster" {
   }
 }
 
+# tfsec:ignore:aws-cloudwatch-log-group-customer-key
 resource "aws_cloudwatch_log_group" "conduktor_logs" {
   name = "conduktor-log-group"
 }

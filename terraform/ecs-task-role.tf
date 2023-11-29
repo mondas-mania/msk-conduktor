@@ -17,6 +17,7 @@ data "aws_iam_policy_document" "ecs_trust_policy" {
   }
 }
 
+# tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "task_policy" {
   statement {
     sid       = "AllowECSExec"

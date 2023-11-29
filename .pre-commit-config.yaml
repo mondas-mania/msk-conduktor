@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.82.0
+    rev: v1.83.6
     hooks:
       # Creates Documentation based on Terraform Outputs and Variables
       # Requires Terraform-Docs (github.com/terraform-docs/terraform-docs)
@@ -23,7 +23,7 @@ repos:
         - --args=-platform=darwin_amd64
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict

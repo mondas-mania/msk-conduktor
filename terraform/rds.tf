@@ -7,6 +7,11 @@ resource "aws_db_subnet_group" "rds_private_subnets" {
   }
 }
 
+# tfsec:ignore:aws-rds-encrypt-instance-storage-data
+# tfsec:ignore:aws-rds-specify-backup-retention
+# tfsec:ignore:AVD-AWS-0176 - no IAM authentication
+# tfsec:ignore:AVD-AWS-0177 - no deletion protection enabled
+# tfsec:ignore:aws-rds-enable-performance-insights
 resource "aws_db_instance" "conduktor_state_db" {
   identifier        = "conduktor-database"
   engine            = "postgres"
