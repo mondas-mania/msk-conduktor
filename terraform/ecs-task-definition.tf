@@ -8,8 +8,8 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
     operating_system_family = "LINUX"
   }
 
-  cpu    = "1024"
-  memory = "3072"
+  cpu    = "1536" # 1.5 cores
+  memory = "3584" # 3.5Gb
 
   task_role_arn      = aws_iam_role.conduktor_task_role.arn
   execution_role_arn = aws_iam_role.conduktor_task_execution_role.arn
@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         },
         {
           name : "CDK_ROOT_LOG_LEVEL"
-          value : "DEBUG"
+          value : "INFO"
         },
         {
           name : "CDK_DATABASE_HOST"
@@ -139,15 +139,15 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         },
         {
           name : "CORTEX_ROOT_LOG_LEVEL",
-          value : "DEBUG"
+          value : "INFO"
         },
         {
           name : "CORTEX_ALERT_ROOT_LOG_LEVEL",
-          value : "DEBUG"
+          value : "INFO"
         },
         {
           name : "PROMETHEUS_ROOT_LOG_LEVEL",
-          value : "DEBUG"
+          value : "INFO"
         }
       ],
       environmentFiles : [],
