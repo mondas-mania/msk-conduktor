@@ -114,5 +114,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_conduktor_address"></a> [conduktor\_address](#output\_conduktor\_address) | The URL of the Conduktor console. This will be the Application Load Balancer's DNS name. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

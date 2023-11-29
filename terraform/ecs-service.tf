@@ -25,7 +25,7 @@ resource "aws_ecs_service" "conduktor_service" {
 
 resource "aws_security_group" "ecs_security_group" {
   name        = "conduktor-ecs-sg"
-  description = "Security Group for the Conduktor ALB."
+  description = "Security Group for the Conduktor ECS Service."
   vpc_id      = data.aws_vpc.msk_vpc.id
 }
 
