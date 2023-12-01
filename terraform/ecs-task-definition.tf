@@ -148,6 +148,22 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
         {
           name : "PROMETHEUS_ROOT_LOG_LEVEL"
           value : "INFO"
+        },
+        {
+          name : "CDK_MONITORING_STORAGE_S3_BUCKET"
+          value : aws_s3_bucket.conduktor_monitoring_storage.bucket
+        },
+        {
+          name : "CDK_MONITORING_STORAGE_S3_REGION"
+          value : var.region
+        },
+        {
+          name : "CDK_MONITORING_STORAGE_S3_ENDPOINT"
+          value : "s3.${var.region}.amazonaws.com"
+        },
+        {
+          name : "CDK_MONITORING_STORAGE_S3_INSECURE"
+          value : "false"
         }
       ]
       environmentFiles : []

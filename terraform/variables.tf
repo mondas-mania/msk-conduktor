@@ -71,3 +71,9 @@ variable "conduktor_password" {
   description = "Password for the Conduktor console."
   type        = string
 }
+
+variable "additional_bucket_policy_principals" {
+  description = "A list of additional IAM principals to add to the bucket policy for monitoring."
+  type        = list(string)
+  default     = []
+}
