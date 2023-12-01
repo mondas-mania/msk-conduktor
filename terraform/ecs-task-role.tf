@@ -44,6 +44,28 @@ data "aws_iam_policy_document" "task_policy" {
       "logs:PutLogEvents",
     ]
   }
+
+  statement {
+    sid    = "StoreInS3"
+    effect = "Allow"
+
+    actions = [
+      "s3:PutObject",
+      "s3:DeleteObject",
+      "s3:DeleteObjectVersion",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:ListBucketVersions",
+      "s3:ListBucket",
+      "s3:PutObjectTagging",
+      "s3:PutObjectVersionTagging",
+    ]
+
+    resources = [
+      "arn:aws:s3:::conduktor-monitoring-${random_string.bucket_random.result}/*",
+      "arn:aws:s3:::conduktor-monitoring-${random_string.bucket_random.result}",
+    ]
+  }
 }
 
 resource "aws_iam_role" "conduktor_task_role" {
