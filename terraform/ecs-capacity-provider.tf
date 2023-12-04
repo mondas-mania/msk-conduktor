@@ -31,7 +31,7 @@ resource "aws_autoscaling_group" "conduktor_cluster_node_group" {
 
   launch_template {
     id      = aws_launch_template.conduktor_cluster_launch_template.id
-    version = "$Latest"
+    version = aws_launch_template.conduktor_cluster_launch_template.latest_version
   }
 
   vpc_zone_identifier = data.aws_subnets.msk_private_subnets.ids
