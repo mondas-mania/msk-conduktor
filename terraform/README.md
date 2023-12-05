@@ -20,6 +20,11 @@ alb_ingress_cidrs = {
   ]
 }
 
+msk_security_group_ids = [
+  "sg-12345678abcdefghi" # MSK SG
+]
+msk_port = "9098"
+
 conduktor_console_image_tag    = "1.19.2"
 conduktor_monitoring_image_tag = "1.19.2"
 
