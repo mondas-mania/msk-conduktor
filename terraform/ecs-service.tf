@@ -27,6 +27,10 @@ resource "aws_security_group" "ecs_security_group" {
   name        = "conduktor-ecs-sg"
   description = "Security Group for the Conduktor ECS Service."
   vpc_id      = data.aws_vpc.msk_vpc.id
+
+  tags = {
+    "Name" = "conduktor-ecs-sg"
+  }
 }
 
 resource "aws_security_group_rule" "ecs_allow_from_alb" {

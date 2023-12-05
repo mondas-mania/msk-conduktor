@@ -36,6 +36,10 @@ resource "aws_security_group" "rds_security_group" {
   name        = "conduktor-rds-sg"
   description = "Security Group for the Conduktor PostgreSQL Database."
   vpc_id      = data.aws_vpc.msk_vpc.id
+
+  tags = {
+    "Name" = "conduktor-rds-sg"
+  }
 }
 
 resource "aws_security_group_rule" "rds_allow_from_ecs" {

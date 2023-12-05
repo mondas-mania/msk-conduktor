@@ -38,6 +38,10 @@ resource "aws_security_group" "alb_security_group" {
   name        = "conduktor-alb-sg"
   description = "Security Group for the Conduktor ALB."
   vpc_id      = data.aws_vpc.msk_vpc.id
+
+  tags = {
+    "Name" = "conduktor-alb-sg"
+  }
 }
 
 # tfsec:ignore:aws-ec2-no-public-ingress-sgr
