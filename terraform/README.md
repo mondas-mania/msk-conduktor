@@ -90,6 +90,7 @@ No modules.
 | [aws_security_group_rule.alb_allow_to_ecs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.ecs_allow_all_outbound](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.ecs_allow_from_alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_security_group_rule.msk_allow_from_conduktor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.rds_allow_from_ecs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_ssm_parameter.conduktor_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
 | [aws_ssm_parameter.conduktor_password](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
@@ -119,6 +120,8 @@ No modules.
 | <a name="input_conduktor_organization_name"></a> [conduktor\_organization\_name](#input\_conduktor\_organization\_name) | The name of the Organization that Conduktor will use. | `string` | `"Test Organization"` | no |
 | <a name="input_conduktor_password"></a> [conduktor\_password](#input\_conduktor\_password) | Password for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_conduktor_username"></a> [conduktor\_username](#input\_conduktor\_username) | Username for the Conduktor console. | `string` | n/a | yes |
+| <a name="input_msk_port"></a> [msk\_port](#input\_msk\_port) | The port to allow Conduktor to talk to MSK on. Defaults to 9098. | `string` | `"9098"` | no |
+| <a name="input_msk_security_group_ids"></a> [msk\_security\_group\_ids](#input\_msk\_security\_group\_ids) | A list of Security Group IDs for which to allow access from Conduktor. | `list(string)` | `[]` | no |
 | <a name="input_owner"></a> [owner](#input\_owner) | Your name, used for tagging purposes. | `string` | `"Edna Mode"` | no |
 | <a name="input_rds_password"></a> [rds\_password](#input\_rds\_password) | Password for the RDS instance that stores the state of Conduktor | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region in which to deploy these resources. | `string` | `"eu-west-1"` | no |

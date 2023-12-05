@@ -77,3 +77,15 @@ variable "additional_bucket_policy_principals" {
   type        = list(string)
   default     = []
 }
+
+variable "msk_security_group_ids" {
+  description = "A list of Security Group IDs for which to allow access from Conduktor."
+  type        = list(string)
+  default     = []
+}
+
+variable "msk_port" {
+  description = "The port to allow Conduktor to talk to MSK on. Defaults to 9098."
+  type        = string
+  default     = "9098"
+}
