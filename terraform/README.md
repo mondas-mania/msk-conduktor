@@ -35,8 +35,8 @@ conduktor_password          = "ineverlookbackdarling"
 rds_password = "thisisnotsecretatall"
 
 additional_task_role_policies = [
-  "arn:aws:iam::aws:policy/AmazonMSKFullAccess",
-  "arn:aws:iam::123456789012:policy/kafka-access"
+  "arn:aws:iam::123456789012:policy/kafka-api-access",
+  "arn:aws:iam::aws:policy/AWSGlueSchemaRegistryFullAccess"
 ]
 
 additional_bucket_policy_principals = [
@@ -77,6 +77,7 @@ No modules.
 | [aws_ecs_cluster_capacity_providers.conduktor_node_capacity_provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster_capacity_providers) | resource |
 | [aws_ecs_service.conduktor_service](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
 | [aws_ecs_task_definition.conduktor_task_definition](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition) | resource |
+| [aws_glue_registry.glue_schema_registry](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_registry) | resource |
 | [aws_iam_instance_profile.node_instance_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_role.conduktor_task_execution_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role.conduktor_task_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
