@@ -1,5 +1,5 @@
-# tfsec:ignore:aws-elb-drop-invalid-headers
-# tfsec:ignore:aws-elb-alb-not-public
+# trivy:ignore:AVD-AWS-0052 'drop invalid headers'
+# trivy:ignore:AVD-AWS-0053 'public ALB'
 resource "aws_lb" "conduktor_load_balancer" {
   name               = "conduktor-alb"
   internal           = false
@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "conduktor_target_group" {
   }
 }
 
-# tfsec:ignore:aws-elb-http-not-used
+# trivy:ignore:AVD-AWS-0054 'use of HTTP'
 resource "aws_lb_listener" "conduktor_default_listener" {
   load_balancer_arn = aws_lb.conduktor_load_balancer.arn
   port              = "80"
@@ -44,7 +44,7 @@ resource "aws_security_group" "alb_security_group" {
   }
 }
 
-# tfsec:ignore:aws-ec2-no-public-ingress-sgr
+# trivy:ignore:AVD-AWS-0107 'public ingress from /0'
 resource "aws_security_group_rule" "alb_allow_ingress" {
   for_each          = var.alb_ingress_cidrs
   description       = "Allow traffic into the ALB. ${each.key}"

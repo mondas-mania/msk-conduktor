@@ -43,7 +43,7 @@ resource "aws_security_group_rule" "ecs_allow_from_alb" {
   security_group_id        = aws_security_group.ecs_security_group.id
 }
 
-# tfsec:ignore:aws-ec2-no-public-egress-sgr
+# trivy:ignore:AVD-AWS-0104 'public egress to /0'
 resource "aws_security_group_rule" "ecs_allow_all_outbound" {
   description       = "Allow traffic out from service."
   type              = "egress"

@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.83.6
+    rev: v1.86.0
     hooks:
       # Creates Documentation based on Terraform Outputs and Variables
       # Requires Terraform-Docs (github.com/terraform-docs/terraform-docs)
@@ -10,9 +10,9 @@ repos:
       - id: terraform_fmt
       # Lint code using `tflint` to ensure it matches the correct style
       - id: terraform_tflint
-        args: [--args=--config=.tflint.hcl]
-      # Runs `tfsec` to check for known security misconfigurations
-      - id: terraform_tfsec
+        args: [--args=--config=__GIT_WORKING_DIR__/.tflint.hcl]
+      # Runs trivy (formerly `tfsec`) to check for known security misconfigurations
+      - id: terraform_trivy
       # Runs `terraform validate` to check for valid Terraform code
       - id: terraform_validate
         exclude: 'terraform/modules/'

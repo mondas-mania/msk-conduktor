@@ -7,11 +7,20 @@ resource "aws_db_subnet_group" "rds_private_subnets" {
   }
 }
 
-# tfsec:ignore:aws-rds-encrypt-instance-storage-data
-# tfsec:ignore:aws-rds-specify-backup-retention
-# tfsec:ignore:AVD-AWS-0176 - no IAM authentication
-# tfsec:ignore:AVD-AWS-0177 - no deletion protection enabled
-# tfsec:ignore:aws-rds-enable-performance-insights
+resource "aws_db_parameter_group" "postgres15_paramater_group" {
+  name   = "postgres15"
+  family = "postgres15"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# trivy:ignore:AVD-AWS-0077 'specify backup retention'
+# trivy:ignore:AVD-AWS-0080 'encrypt instance storage data'
+# trivy:ignore:AVD-AWS-0133 'enable performance insights'
+# trivy:ignore:AVD-AWS-0176 'enable IAM auth'
+# trivy:ignore:AVD-AWS-0177 'enable instance deletion protection'
 resource "aws_db_instance" "conduktor_state_db" {
   identifier        = "conduktor-database"
   engine            = "postgres"
@@ -27,7 +36,7 @@ resource "aws_db_instance" "conduktor_state_db" {
   db_name              = "conduktor_state"
   username             = "conduktor"
   password             = var.rds_password
-  parameter_group_name = "default.postgres15"
+  parameter_group_name = aws_db_parameter_group.postgres15_paramater_group.name
 
   skip_final_snapshot = true
 }

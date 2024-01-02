@@ -9,10 +9,10 @@ resource "random_string" "bucket_random" {
 # Bucket #
 ##########
 
-# tfsec:ignore:aws-s3-enable-versioning
-# tfsec:ignore:aws-s3-enable-bucket-logging
-# tfsec:ignore:aws-s3-encryption-customer-key
-# tfsec:ignore:aws-s3-enable-bucket-encryption
+# trivy:ignore:AVD-AWS-0089 'enable logging'
+# trivy:ignore:AVD-AWS-0088 'enable bucket encryption'
+# trivy:ignore:AVD-AWS-0090 'enable versioning'
+# trivy:ignore:AVD-AWS-0132 'encrypt with customer key'
 resource "aws_s3_bucket" "conduktor_monitoring_storage" {
   bucket = "conduktor-monitoring-${random_string.bucket_random.result}"
 }

@@ -2,7 +2,7 @@ locals {
   ami_id = jsondecode(data.aws_ssm_parameter.ecs_optimized_image.value)["image_id"]
 }
 
-# tfsec:ignore:aws-ec2-enforce-launch-config-http-token-imds
+# trivy:ignore:AVD-AWS-0130 'enforce launch config HTTP token IMDS'
 resource "aws_launch_template" "conduktor_cluster_launch_template" {
   name_prefix            = "conduktor"
   image_id               = local.ami_id

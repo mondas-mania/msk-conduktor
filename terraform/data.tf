@@ -32,5 +32,8 @@ data "aws_subnets" "msk_public_subnets" {
 }
 
 data "aws_ssm_parameter" "ecs_optimized_image" {
+  # 2025 is the next major version of Amazon Linux
+  # no need to update this to 2024 :)
+  # see https://docs.aws.amazon.com/linux/al2023/ug/release-cadence
   name = "/aws/service/ecs/optimized-ami/amazon-linux-2023/recommended"
 }

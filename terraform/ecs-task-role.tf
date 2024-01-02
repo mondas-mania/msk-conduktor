@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "ecs_trust_policy" {
   }
 }
 
-# tfsec:ignore:aws-iam-no-policy-wildcards
+# trivy:ignore:AVD-AWS-0057 'no policy wildcards'
 data "aws_iam_policy_document" "task_policy" {
   statement {
     sid       = "AllowECSExec"
