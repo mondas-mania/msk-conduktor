@@ -9,9 +9,6 @@
 *.tfstate
 *.tfstate.*
 
-# tfvars files
-*.tfvars
-
 # Crash log files
 crash.log
 
@@ -22,7 +19,7 @@ crash.log
 #
 # Disbaled this as for this use-case we do want to use .tfvars files. Any secrets will
 # be passed in via environment variables.
-# *.tfvars
+*.tfvars
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
