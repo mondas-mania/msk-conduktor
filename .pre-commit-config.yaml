@@ -12,7 +12,9 @@ repos:
       - id: terraform_tflint
         args: [--args=--config=__GIT_WORKING_DIR__/.tflint.hcl]
       # Runs trivy (formerly `tfsec`) to check for known security misconfigurations
+      # Skips example configurations found in terraform-aws-modules
       - id: terraform_trivy
+        args: ["--args=--skip-dirs='**/examples'"]
       # Runs `terraform validate` to check for valid Terraform code
       - id: terraform_validate
         exclude: 'terraform/modules/'
