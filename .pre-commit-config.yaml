@@ -16,6 +16,7 @@ repos:
       # Runs `terraform validate` to check for valid Terraform code
       - id: terraform_validate
         exclude: 'terraform/modules/'
+      # Runs `terraform providers lock` to add standard Linux & Mac checksums to tflock file
       - id: terraform_providers_lock
         args:
         - --hook-config=--mode=only-check-is-current-lockfile-cross-platform
@@ -25,11 +26,17 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
+      # Ensures no large files are committed
       - id: check-added-large-files
+      # Ensures there are no active merge conflicts
       - id: check-merge-conflict
+      # Sense checks YAML syntax
       - id: check-yaml
         args: [--allow-multiple-documents]
+      # Ensures no AWS credentials are committed
       - id: detect-aws-credentials
         args: [--allow-missing-credentials]
+      # Fixes any mixed line endings (i.e. different new line symbols)
       - id: mixed-line-ending
+      # Trims any trailing whitespaces
       - id: trailing-whitespace
