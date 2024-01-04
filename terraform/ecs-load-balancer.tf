@@ -9,11 +9,12 @@ resource "aws_lb" "conduktor_load_balancer" {
 }
 
 resource "aws_lb_target_group" "conduktor_target_group" {
-  name        = "conduktor-target-group"
-  port        = 8080
-  protocol    = "HTTP"
-  vpc_id      = data.aws_vpc.msk_vpc.id
-  target_type = "ip"
+  name                 = "conduktor-target-group"
+  port                 = 8080
+  protocol             = "HTTP"
+  vpc_id               = data.aws_vpc.msk_vpc.id
+  target_type          = "ip"
+  deregistration_delay = 60
 
   health_check {
     # Found in the CloudFormation template
