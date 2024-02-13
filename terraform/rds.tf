@@ -24,7 +24,7 @@ resource "aws_db_parameter_group" "postgres15_paramater_group" {
 resource "aws_db_instance" "conduktor_state_db" {
   identifier        = "conduktor-database"
   engine            = "postgres"
-  engine_version    = "15.3"
+  engine_version    = "15.5"
   instance_class    = "db.t3.micro"
   allocated_storage = 20
 
