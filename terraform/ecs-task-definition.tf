@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
   container_definitions = jsonencode([
     {
       name : "conduktor-platform"
-      image : "conduktor/conduktor-platform:${var.conduktor_console_image_tag}"
+      image : "conduktor/conduktor-console:${var.conduktor_console_image_tag}"
       cpu : 0
       portMappings : [
         {
@@ -109,7 +109,7 @@ resource "aws_ecs_task_definition" "conduktor_task_definition" {
 
     {
       name : "conduktor-monitoring"
-      image : "conduktor/conduktor-platform-cortex:${var.conduktor_monitoring_image_tag}"
+      image : "conduktor/conduktor-console-cortex:${var.conduktor_monitoring_image_tag}"
       cpu : 0
       portMappings : [
         {
