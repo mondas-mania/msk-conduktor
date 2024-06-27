@@ -129,7 +129,6 @@ No modules.
 | <a name="input_conduktor_username"></a> [conduktor\_username](#input\_conduktor\_username) | Username for the Conduktor console. | `string` | n/a | yes |
 | <a name="input_msk_port"></a> [msk\_port](#input\_msk\_port) | The port to allow Conduktor to talk to MSK on. Defaults to 9098. | `string` | `"9098"` | no |
 | <a name="input_msk_security_group_ids"></a> [msk\_security\_group\_ids](#input\_msk\_security\_group\_ids) | A list of Security Group IDs for which to allow access from Conduktor. | `list(string)` | `[]` | no |
-| <a name="input_owner"></a> [owner](#input\_owner) | Your name, used for tagging purposes. | `string` | `"Edna Mode"` | no |
 | <a name="input_rds_password"></a> [rds\_password](#input\_rds\_password) | Password for the RDS instance that stores the state of Conduktor | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region in which to deploy these resources. | `string` | `"eu-west-1"` | no |
 | <a name="input_vpc_name"></a> [vpc\_name](#input\_vpc\_name) | The Name tag of the VPC to search for. | `string` | n/a | yes |

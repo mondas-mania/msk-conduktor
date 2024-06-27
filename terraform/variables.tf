@@ -1,8 +1,8 @@
-variable "owner" {
-  description = "Your name, used for tagging purposes."
-  type        = string
-  default     = "Edna Mode"
-}
+# variable "owner" {
+#   description = "Your name, used for tagging purposes."
+#   type        = string
+#   default     = "Edna Mode"
+# }
 
 variable "cli_profile_name" {
   description = <<EOT

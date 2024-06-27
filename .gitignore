@@ -255,7 +255,11 @@ fabric.properties
 # Custom .gitignore entries BEGIN
 # ------------
 
+# amazon script to check exec connectivity for ECS
 exec-checker.sh
+
+# any imports or moves
+refactor.tf
 
 # ------------
 # Custom .gitignore entries END
