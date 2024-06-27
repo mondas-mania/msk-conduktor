@@ -1,25 +1,25 @@
 repos:
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.92.0
+  - repo: https://github.com/tofuutils/pre-commit-opentofu
+    rev: v1.0.3
     hooks:
-      # Creates Documentation based on Terraform Outputs and Variables
-      # Requires Terraform-Docs (github.com/terraform-docs/terraform-docs)
-      - id: terraform_docs
+      # Creates Documentation based on OpenTofu Outputs and Variables
+      # Requires OpenTofu-Docs (github.com/opentofu-docs/opentofu-docs)
+      - id: tofu_docs
         args: [--args=--lockfile=false]
-      # Check that code is formatted to `terraform fmt` canonical style
-      - id: terraform_fmt
+      # Check that code is formatted to `opentofu fmt` canonical style
+      - id: tofu_fmt
       # Lint code using `tflint` to ensure it matches the correct style
-      - id: terraform_tflint
+      - id: tofu_tflint
         args: [--args=--config=__GIT_WORKING_DIR__/.tflint.hcl]
       # Runs trivy (formerly `tfsec`) to check for known security misconfigurations
-      # Skips example configurations found in terraform-aws-modules
-      - id: terraform_trivy
+      # Skips example configurations found in opentofu-aws-modules
+      - id: tofu_trivy
         args: ["--args=--skip-dirs='**/examples'"]
-      # Runs `terraform validate` to check for valid Terraform code
-      - id: terraform_validate
-        exclude: 'terraform/modules/'
-      # Runs `terraform providers lock` to add standard Linux & Mac checksums to tflock file
-      - id: terraform_providers_lock
+      # Runs `opentofu validate` to check for valid OpenTofu code
+      - id: tofu_validate
+        exclude: 'opentofu/modules/'
+      # Runs `opentofu providers lock` to add standard Linux & Mac checksums to tflock file
+      - id: tofu_providers_lock
         args:
         - --hook-config=--mode=only-check-is-current-lockfile-cross-platform
         - --args=-platform=linux_amd64
