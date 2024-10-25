@@ -16,7 +16,7 @@ alb_ingress_cidrs = {
   "Home address"  = ["4.3.2.1/32"]
   "Office IPs" = [
     "1.2.3.4/32",
-    "5.6.7.8/32
+    "5.6.7.8/32"
   ]
 }
 
